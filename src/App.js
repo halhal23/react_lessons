@@ -1,37 +1,29 @@
-import React from 'react';
+import React, { Component } from 'react';
 
-// class App extends Component {
-//   render() {
-//     return <div><h2>Hello World halhal!!!!!</h2></div>
-//   }
-// }
-const App = () => {
-  const profiles = [
-    { name: 'hiroharu', age: 22 },
-    { name: 'tarou', age: 37 },
-    { name: 'yamada', age: 32 },
-    { name: 'takashi' },
-    { age: 43 }
-  ]
+const App = () => (<Counter></Counter>)
 
-  return (
-    <React.Fragment>
-      {
-        profiles.map((profile) => {
-          return <User name={profile.name} age={profile.age} />
-        })
-      }
-    </React.Fragment>
-  )
-}
+class Counter extends Component {
+  constructor(props){
+    super(props)
+    this.state = { count: 0 }
+  }
 
-const User = (props) => {
-return <h1>I am { props.name } and my old is { props.age } !</h1>
-}
+  addCount = () => {
+    this.setState({ count: this.state.count + 1 })
+  }
+  minusCount = () => {
+    this.setState({ count: this.state.count - 1 })
+  }
 
-User.defaultProps = {
-  name: 'NoName',
-  age: 0
+  render(){
+    return (
+      <React.Fragment>
+        <h1>{ this.state.count }</h1>
+        <button onClick={this.addCount}>+1</button>
+        <button onClick={this.minusCount}>-1</button>
+      </React.Fragment>
+    )
+  }
 }
 
 
